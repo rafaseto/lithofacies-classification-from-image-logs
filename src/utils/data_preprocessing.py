@@ -1,7 +1,7 @@
 from typing import List, Dict
 import numpy as np
 
-def logical_files_to_dict(logical_files):
+def logical_files_to_dict(logical_files: List[object]) -> Dict[int, Dict[int, np.ndarray]]:
     """
     Receives the well's logical files and creates a dictionary to store the frame data.
 
