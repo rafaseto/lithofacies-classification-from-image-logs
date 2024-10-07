@@ -1,6 +1,7 @@
 from typing import List, Dict
 import numpy as np
 import pandas as pd
+import os
 
 def logical_files_to_ndarray(logical_files: List[object]) -> Dict[int, Dict[int, np.ndarray]]:
     """
@@ -72,5 +73,34 @@ def ndarray_to_dataframe(logical_files_dict: Dict[int, Dict[int, np.ndarray]]) -
         logical_file_index += 1
 
     return logical_files_df_dict
+
+def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], base_dir: str = "../data/csv_from_dlis") -> None: 
+    """
+    Saves each DataFrame from a nested dictionary of wells, logical files, and frames to separate CSV files.
+
+    Args:
+        well_df_dict (Dict[str, Dict[int, Dict[int, pd.DataFrame]]]): A nested dictionary where:
+            - The outer keys are well names (str),
+            - The second-level keys are logical file indices (int),
+            - The third-level keys are frame indices (int),
+            - The values are pandas DataFrames containing well log data.
+        base_dir (str): The base directory where the CSV files will be saved. Defaults to '../data/csv_from_dlis'.
+
+    Returns:
+        None: The function saves CSV files and does not return any value.
+    """
+    for well_name, logical_files_df_dict in well_df_dict.items():
+        for logical_file_index, logical_file_dfs in logical_files_df_dict.items():
+            for frame_index, frame_df in logical_file_dfs.items():
+                
+                # Create the full file path for saving the CSV
+                file_path = f"{base_dir}/{well_name}/logical_file_{logical_file_index}/frame_{frame_index}.csv"
+                
+                # Ensure the directories exist before saving the CSV
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+                # Save the DataFrame as a CSV file
+                frame_df.to_csv(file_path, index=False)
+                
 
         
