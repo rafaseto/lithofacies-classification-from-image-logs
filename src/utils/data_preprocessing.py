@@ -36,6 +36,7 @@ def logical_files_to_ndarray(logical_files: List[object]) -> Dict[int, Dict[int,
 
     return logical_files_dict
 
+
 def ndarray_to_dataframe(logical_files_dict: Dict[int, Dict[int, np.ndarray]]) -> Dict[int, Dict[int, pd.DataFrame]]:
     """
     Converts a dictionary of NumPy arrays (representing well log frames) into a dictionary of pandas DataFrames.
@@ -130,7 +131,7 @@ def plot_gr_logs(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
     y_150_300 = df_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with blue color
-    ax.plot(x_0_150, y_0_150, label='GR (0-150)', color='blue', linewidth=0.75, zorder=2)
+    ax.plot(x_0_150, y_0_150, label='GR', color='blue', linewidth=0.75, zorder=2)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
     ax.plot(x_150_300, y_150_300, color='blue', linewidth=0.75, zorder=2)
@@ -172,6 +173,3 @@ def plot_gr_logs(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
 
     # Display the legend for the GR log
     ax.legend()
-                
-
-        
