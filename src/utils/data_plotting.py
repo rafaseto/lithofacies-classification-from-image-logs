@@ -3,12 +3,11 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 
-def plot_gr_logs(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
+def plot_gr_logs(df: pd.DataFrame, title: str) -> None:
     """
     Plots gamma-ray (GR) logs from the provided DataFrame on the specified axes.
 
     Args:
-        ax (plt.Axes): Matplotlib axes on which to plot the GR logs.
         df (pd.DataFrame): DataFrame containing the well log data, 
             where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
         title (str): Title for the plot.
@@ -16,6 +15,8 @@ def plot_gr_logs(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
     Returns:
         None
     """
+    fig, ax = plt.subplots(1, 1, figsize=(4, df['TDEP'].max()//14))
+
     # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x_0_150 = df['GR']
     y_0_150 = df['TDEP']
@@ -56,11 +57,12 @@ def plot_gr_logs(ax: plt.Axes, df: pd.DataFrame, title: str) -> None:
     # Set the gridline interval on the Y-axis
     ax.yaxis.set_major_locator(plt.MultipleLocator(5))
 
-    # Invert the Y-axis to represent depth increasing downwards
-    ax.invert_yaxis()
-
     # Set X-axis limits to restrict the GR range from 0 to 150
     ax.set_xlim(0, 150)
+    ax.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
 
     # Add title and labels to the X and Y axes with bold font
     ax.set_title(title, fontweight='bold')
