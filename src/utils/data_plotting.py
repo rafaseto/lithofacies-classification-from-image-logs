@@ -95,8 +95,8 @@ def plot_gr_logs_2_wells(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> Non
     # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x_0_150 = df['GR']
     y_0_150 = df['TDEP']
-    x2_0_150 = df['GR']
-    y2_0_150 = df['TDEP']
+    x2_0_150 = df2['GR']
+    y2_0_150 = df2['TDEP']
 
     # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
     df_150_300 = df.copy()
