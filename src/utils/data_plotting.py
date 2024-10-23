@@ -85,6 +85,8 @@ def plot_gr_logs_2_wells(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> Non
     Args:
         df (pd.DataFrame): DataFrame containing the well log data, 
             where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        df2 (pd.DataFrame): DataFrame containing the well log data, 
+            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
         title (str): Title for the plot.
 
     Returns:
