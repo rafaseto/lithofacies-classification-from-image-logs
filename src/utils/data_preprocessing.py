@@ -1,9 +1,8 @@
 from typing import List, Dict
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import os
+import glob
 
 def logical_files_to_ndarray(logical_files: List[object]) -> Dict[int, Dict[int, np.ndarray]]:
     """
@@ -105,3 +104,37 @@ def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]
 
                 # Save the DataFrame as a CSV file
                 frame_df.to_csv(file_path, index=False)
+
+
+def load_csv_files(base_path :str) -> Dict[str, Dict[str, pd.DateFrame]]:
+    """
+    Loads all CSV files from the specified base directory and stores them in a dictionary
+    organized by folder and file name.
+
+    Args:
+        base_path (str): The root directory where CSV files are stored.
+
+    Returns:
+        Dict[str, Dict[str, pd.DataFrame]]: A nested dictionary where the outer keys are folder names 
+        and the inner keys are file names (with subfolder information), and the values are 
+        Pandas DataFrames representing the content of each CSV file.
+    """
+    
+    csv_data = {}
+
+    data_path = os.path.join(base_path, '**', '*.csv')
+
+    for file in glob.glob(data_path, recursive=True):
+        relative_path = os.path.relpath(file, base_path)
+        parts = relative_path.split(os.sep)
+
+        folder_name = parts[0]
+        
+        file_name = f"{parts[1]}_{parts[2]}"
+        
+        if folder_name not in csv_data:
+            csv_data[folder_name] = {}
+        
+        csv_data[folder_name][file_name] = pd.read_csv(file)
+    
+    return csv_data
