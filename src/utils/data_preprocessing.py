@@ -106,7 +106,7 @@ def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]
                 frame_df.to_csv(file_path, index=False)
 
 
-def load_csv_files(base_path :str) -> Dict[str, Dict[str, pd.DateFrame]]:
+def load_csv_files(base_path :str) -> Dict[str, Dict[str, pd.DataFrame]]:
     """
     Loads all CSV files from the specified base directory and stores them in a dictionary
     organized by folder and file name.
