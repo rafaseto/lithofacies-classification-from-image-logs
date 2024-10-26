@@ -106,18 +106,18 @@ def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]
                 frame_df.to_csv(file_path, index=False)
 
 
-def load_csv_files(base_path :str) -> Dict[str, Dict[str, pd.DataFrame]]:
+def load_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame]]]:
     """
-    Loads all CSV files from the specified base directory and stores them in a dictionary
-    organized by folder and file name.
+    Loads all CSV files from the specified base directory and stores them in a nested dictionary
+    organized by folder, subfolder, and file name.
 
     Args:
         base_path (str): The root directory where CSV files are stored.
 
     Returns:
-        Dict[str, Dict[str, pd.DataFrame]]: A nested dictionary where the outer keys are folder names 
-        and the inner keys are file names (with subfolder information), and the values are 
-        Pandas DataFrames representing the content of each CSV file.
+        Dict[str, Dict[str, Dict[str, pd.DataFrame]]]: A nested dictionary where the outer keys are folder names,
+        the second level keys are subfolder names, and the innermost keys are file names.
+        The values are Pandas DataFrames representing the content of each CSV file.
     """
     
     csv_data = {}
@@ -129,12 +129,15 @@ def load_csv_files(base_path :str) -> Dict[str, Dict[str, pd.DataFrame]]:
         parts = relative_path.split(os.sep)
 
         folder_name = parts[0]
-        
-        file_name = f"{parts[1]}_{parts[2]}"
+        subfolder_name = parts[1]
+        file_name = parts[2]
         
         if folder_name not in csv_data:
             csv_data[folder_name] = {}
         
-        csv_data[folder_name][file_name] = pd.read_csv(file)
+        if subfolder_name not in csv_data[folder_name]:
+            csv_data[folder_name][subfolder_name] = {}
+        
+        csv_data[folder_name][subfolder_name][file_name] = pd.read_csv(file)
     
     return csv_data
