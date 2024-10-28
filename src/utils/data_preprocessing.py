@@ -77,7 +77,7 @@ def ndarray_to_dataframe(logical_files_dict: Dict[int, Dict[int, np.ndarray]]) -
     return logical_files_df_dict
 
 
-def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], base_dir: str = "../data/csv_from_dlis") -> None: 
+def dataframes_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], base_dir: str = "../data/csv_from_dlis_raw") -> None: 
     """
     Saves each DataFrame from a nested dictionary of wells, logical files, and frames to separate CSV files.
 
