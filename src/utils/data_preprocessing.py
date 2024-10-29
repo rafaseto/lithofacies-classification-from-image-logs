@@ -126,7 +126,7 @@ def dfs_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], base
             for frame, df in lf_dict.items():
                 
                 # Create the full file path for saving the CSV
-                file_path = f"{base_dir}/{well}/{logical_file}/{frame}.csv"
+                file_path = f"{base_dir}/{well}/{logical_file}/{frame}"
                 
                 # Ensure the directories exist before saving the CSV
                 os.makedirs(os.path.dirname(file_path), exist_ok=True)
