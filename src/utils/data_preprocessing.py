@@ -106,6 +106,35 @@ def dlis_raw_dfs_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame
                 frame_df.to_csv(file_path, index=False)
 
 
+def dfs_to_csv(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], base_dir) -> None: 
+    """
+    Saves each DataFrame from a nested dictionary of wells, logical files, and frames to separate CSV files.
+
+    Args:
+        well_df_dict (Dict[str, Dict[int, Dict[int, pd.DataFrame]]]): A nested dictionary where:
+            - The outer keys are well names (str),
+            - The second-level keys are logical file indices (int),
+            - The third-level keys are frame indices (int),
+            - The values are pandas DataFrames containing well log data.
+        base_dir (str): The base directory where the CSV files will be saved.
+
+    Returns:
+        None: The function saves CSV files and does not return any value.
+    """
+    for well, w_dict in well_df_dict.items():
+        for logical_file, lf_dict in w_dict.items():
+            for frame, df in lf_dict.items():
+                
+                # Create the full file path for saving the CSV
+                file_path = f"{base_dir}/{well}/{logical_file}/{frame}.csv"
+                
+                # Ensure the directories exist before saving the CSV
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+                # Save the DataFrame as a CSV file
+                df.to_csv(file_path, index=False)
+
+
 def load_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame]]]:
     """
     Loads all CSV files from the specified base directory and stores them in a nested dictionary
