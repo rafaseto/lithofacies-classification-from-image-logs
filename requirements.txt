@@ -2,3 +2,4 @@ pandas
 numpy
 dlisio
 matplotlib
+ipykernel
