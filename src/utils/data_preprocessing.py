@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import glob
+import re
 
 def logical_files_to_ndarray(logical_files: List[object]) -> Dict[int, Dict[int, np.ndarray]]:
     """
@@ -172,27 +173,31 @@ def load_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame
     return csv_data
 
 
-def extract_coating(caminho_arquivo):
+def extract_coating(base_path):
     agp_data = {}
 
-    with open(caminho_arquivo, "r") as file:
-        content = file.read()
+    data_path = os.path.join(base_path, '**', '*.txt')
 
-    # RE to find the name of the well
-    well_name_match = re.search(r"POCO\s*:\s*(.*)", content)
-    well_name = well_name_match.group(1).strip() if well_name_match else "Nome do poço não encontrado"
+    for file in glob.glob(data_path, recursive=True):
 
-    # RE to find the surface coating
-    rev_superficie_match = re.search(r"REV\.\s*SUPERFICIE\s+([\d.]+)", content)
-    rev_superficie = float(rev_superficie_match.group(1)) if rev_superficie_match else None
+        with open(file, "r") as file:
+            content = file.read()
 
-    # RE to find the intermediary coating
-    rev_intermed_match = re.search(r"REV\.\s*INTERMED\.\s+([\d.]+)", content)
-    rev_intermed = float(rev_intermed_match.group(1)) if rev_intermed_match else None
+        # RE to find the name of the well
+        well_name_match = re.search(r"PO[ÇC]O\s*:\s*(.*)", content)
+        well_name = well_name_match.group(1).strip() if well_name_match else "Nome do poço não encontrado"
 
-    agp_data[well_name] = {
-        "Rev. Superficie": rev_superficie,
-        "Rev. Intermed.": rev_intermed
-    }
+        # RE to find the surface coating
+        rev_superficie_match = re.search(r"REV\.\s*SUPERFICIE\s+([\d.]+)", content)
+        rev_superficie = float(rev_superficie_match.group(1)) if rev_superficie_match else None
+
+        # RE to find the intermediary coating
+        rev_intermed_match = re.search(r"REV\.\s*INTERMED\.\s+([\d.]+)", content)
+        rev_intermed = float(rev_intermed_match.group(1)) if rev_intermed_match else None
+
+        agp_data[well_name] = {
+            "Rev. Superficie": rev_superficie,
+            "Rev. Intermed.": rev_intermed
+        }
 
     return agp_data
