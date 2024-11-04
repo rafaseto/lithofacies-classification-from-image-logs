@@ -151,8 +151,17 @@ def plot_rhob_logs(df: pd.DataFrame, title: str) -> None:
     x = df['RHOB']
     y = df['TDEP']
 
-    # Plot the original RHOB logs with 
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df_2 = df.copy()
+    df_2['RHOB'] = df_2['RHOB'] + 1
+    x_2 = df_2['RHOB']
+    y_2 = df_2['TDEP']
+
+    # Plot the RHOB logs in the range of 1-2 
     ax.plot(x, y, label='RHOB', color='red', linewidth=0.75, zorder=2)
+
+    # Plot the original RHOB logs with 
+    ax.plot(x_2, y_2, label='RHOB', color='red', linewidth=0.75, zorder=2)
 
     # Set the X-axis ticks and labels for both RHOB ranges 
     sequence = np.arange(2, 3.05, 0.05) 
