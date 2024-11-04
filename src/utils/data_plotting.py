@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from typing import Dict
+import numpy as np
 
 def plot_gr_logs(df: pd.DataFrame, title: str) -> None:
     """
@@ -126,6 +127,64 @@ def plot_dt_logs(df: pd.DataFrame, title: str) -> None:
     # Add title and labels to the X and Y axes with bold font
     ax.set_title(title, fontweight='bold')
     ax.set_xlabel('DT', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend for the GR log
+    ax.legend()
+
+
+def plot_rhob_logs(df: pd.DataFrame, title: str) -> None:
+    """
+    Plots RHOB logs from the provided DataFrame on the specified axes.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the well log data, 
+            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
+
+    # Extract RHOB and TDEP values for plotting the RHOB logs
+    x = df['RHOB']
+    y = df['TDEP']
+
+    # Plot the original RHOB logs with 
+    ax.plot(x, y, label='RHOB', color='red', linewidth=0.75, zorder=2)
+
+    # Set the X-axis ticks and labels for both RHOB ranges 
+    sequence = np.arange(2, 3.05, 0.05) 
+    ax.set_xticks(sequence)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax.set_xlim(2, 3)
+    ax.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('RHOB', fontweight='bold')
     ax.set_ylabel('TDEP', fontweight='bold')
 
     # Display the legend for the GR log
