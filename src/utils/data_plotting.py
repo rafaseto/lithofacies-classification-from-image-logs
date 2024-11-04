@@ -100,6 +100,7 @@ def plot_dt_logs(df: pd.DataFrame, title: str) -> None:
 
     # Position X-axis ticks and labels at the top of the plot
     ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
 
     # Format the Y-axis tick labels to display intervals of 50
     ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
