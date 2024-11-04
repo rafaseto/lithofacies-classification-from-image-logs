@@ -73,6 +73,64 @@ def plot_gr_logs(df: pd.DataFrame, title: str) -> None:
     ax.legend()
 
 
+def plot_dt_logs(df: pd.DataFrame, title: str) -> None:
+    """
+    Plots DT logs from the provided DataFrame on the specified axes.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the well log data, 
+            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
+
+    # Extract DT and TDEP values for plotting the DT logs
+    x = df['DT']
+    y = df['TDEP']
+
+    # Plot the original DT logs with 
+    ax.plot(x, y, label='DT', color='black', linewidth=0.75, zorder=2)
+
+    # Set the X-axis ticks and labels for both DT ranges 
+    ticks_x_axis = list(range(40, 241, 10))
+    ax.set_xticks(ticks_x_axis)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax.xaxis.set_ticks_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax.set_xlim(40, 240)
+    ax.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
+    ax.invert_xaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('DT', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend for the GR log
+    ax.legend()
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -459,3 +517,5 @@ def create_df_subset(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]]
                     pass
                 
     return curve_data
+
+
