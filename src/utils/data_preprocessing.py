@@ -201,3 +201,23 @@ def extract_coating(base_path):
         }
 
     return agp_data
+
+
+def create_df_subset(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], curve: str):
+    curve_data = {}
+    
+    for well, w_dict in well_df_dict.items():
+        curve_data[well] = {}
+
+        for logical_file, lf_dict in w_dict.items():
+            curve_data[well][logical_file] = {}
+
+            for frame, df in lf_dict.items():
+                try:
+                    curve_df = df[['TDEP', curve]]
+
+                    curve_data[well][logical_file][frame] = curve_df
+                except:
+                    pass
+                
+    return curve_data
