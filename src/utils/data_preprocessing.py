@@ -152,7 +152,7 @@ def spliced_dfs_to_csv(well_df_dict: Dict[str, pd.DataFrame], base_dir:str) -> N
     for well, df in well_df_dict.items():
                 
         # Create the full file path for saving the CSV
-        file_path = f"{base_dir}/{well}"
+        file_path = f"{base_dir}/{well}.csv"
                 
         # Ensure the directories exist before saving the CSV
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -194,6 +194,30 @@ def load_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame
             csv_data[folder_name][subfolder_name] = {}
         
         csv_data[folder_name][subfolder_name][file_name] = pd.read_csv(file)
+    
+    return csv_data
+
+
+def load_spliced_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame]]]:
+    """
+    Loads the CSV files result of the splicing process
+
+    Args:
+        base_path (str): The root directory where CSV files are stored.
+
+    Returns:
+        Dict[str, pd.DataFrame]: A nested dictionary where the keys are well names, and
+        the values are Pandas DataFrames representing the content of each CSV file.
+    """
+    
+    csv_data = {}
+
+    data_path = os.path.join(base_path, '**', '*.csv')
+
+    for file in glob.glob(data_path, recursive=True):
+        relative_path = os.path.relpath(file, base_path)
+
+        csv_data[relative_path] = pd.read_csv(file)
     
     return csv_data
 
