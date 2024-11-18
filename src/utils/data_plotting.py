@@ -133,7 +133,70 @@ def plot_dt_logs(df: pd.DataFrame, title: str) -> None:
     ax.legend()
 
 
-def plot_rhob_logs(df: pd.DataFrame, title: str) -> None:
+def plot_dt_logs_2_runs(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
+    """
+    Plots DT logs from the provided DataFrame on the specified axes.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the well log data, 
+            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
+
+    # Extract DT and TDEP values for plotting the DT logs
+    x = df['DT']
+    y = df['TDEP']
+    x_2 = df2['DT']
+    y_2 = df2['TDEP']
+
+    # Plot the original DT logs with 
+    ax.plot(x, y, label='DT 1', color='lightblue', linewidth=0.75, zorder=2)
+    ax.plot(x_2, y_2, label='DT 2', color='salmon', linewidth=0.75, zorder=3)
+
+    # Set the X-axis ticks and labels for both DT ranges 
+    ticks_x_axis = list(range(40, 241, 10))
+    ax.set_xticks(ticks_x_axis)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax.set_xlim(40, 240)
+    ax.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
+    ax.invert_xaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('DT', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend for the GR log
+    ax.legend()
+
+
+
+def plot_rhob_logs_2_runs(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
     """
     Plots RHOB logs from the provided DataFrame on the specified axes.
 
@@ -151,17 +214,31 @@ def plot_rhob_logs(df: pd.DataFrame, title: str) -> None:
     x = df['RHOB']
     y = df['TDEP']
 
+    x_2 = df2['RHOB']
+    y_2 = df2['TDEP']
+
     # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
-    df_2 = df.copy()
-    df_2['RHOB'] = df_2['RHOB'] + 1
-    x_2 = df_2['RHOB']
-    y_2 = df_2['TDEP']
+    df_copy = df.copy()
+    df_copy['RHOB'] = df_copy['RHOB'] + 1
+    x_ = df_copy['RHOB']
+    y_ = df_copy['TDEP']
+
+    df2_copy = df2.copy()
+    df2_copy['RHOB'] = df2_copy['RHOB'] + 1
+    x_2_ = df2_copy['RHOB']
+    y_2_ = df2_copy['TDEP']
 
     # Plot the RHOB logs in the range of 1-2 
-    ax.plot(x, y, label='RHOB', color='red', linewidth=0.75, zorder=2)
+    ax.plot(x, y, label='RHOB', color='salmon', linewidth=0.75, zorder=2)
 
     # Plot the original RHOB logs with 
-    ax.plot(x_2, y_2, label='RHOB', color='red', linewidth=0.75, zorder=2)
+    ax.plot(x_, y_, color='salmon', linewidth=0.75, zorder=2)
+
+    # Plot the RHOB logs in the range of 1-2 
+    ax.plot(x_2, y_2, label='RHOB', color='lightblue', linewidth=0.75, zorder=3)
+
+    # Plot the original RHOB logs with 
+    ax.plot(x_2_, y_2_, color='lightblue', linewidth=0.75, zorder=3)
 
     # Set the X-axis ticks and labels for both RHOB ranges 
     sequence = np.arange(2, 3.05, 0.05) 
