@@ -191,6 +191,66 @@ def plot_linear_res_logs(df: pd.DataFrame, title: str) -> None:
     ax.legend()
 
 
+def plot_linear_res_logs_2_runs(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
+    """
+    Plots linear RES logs from the provided DataFrame on the specified axes.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the well log data, 
+            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    fig, ax = plt.subplots(1, 1, figsize=(7.2, df['TDEP'].max()//14))
+
+    # Extract DT and TDEP values for plotting the DT logs
+    x = df['ILD']
+    y = df['TDEP']
+    x_2 = df2['ILD']
+    y_2 = df2['TDEP']
+
+    # Plot the original DT logs with 
+    ax.plot(x, y, label='ILD 1', color='green', linewidth=0.75, linestyle='--', zorder=2)
+    ax.plot(x_2, y_2, label='ILD 2', color='green', linewidth=0.75, linestyle='--', zorder=3)
+
+    # Set the X-axis ticks and labels for both res ranges 
+    sequence = np.arange(-0.7, 1.41, 0.11) 
+    ax.set_xticks(sequence)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax.set_xlim(-0.7, 1.3)
+    ax.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('ILD', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend for the GR log
+    ax.legend()
+
 
 def plot_dt_logs_2_runs(df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
     """
@@ -704,3 +764,120 @@ def plot_gr_logs_4_runs(df_spliced: pd.DataFrame,
     ax.legend()
 
 
+def plot_combined(df, df2, df_spliced, df3, df4, df5, df6, title1, title2, fundo):
+    """
+    Combines two plots (linear RES logs and GR logs) side by side in a single figure.
+
+    Args:
+        df, df2 (pd.DataFrame): DataFrames for the linear RES logs.
+        df_spliced, df3, df4, df5 (pd.DataFrame): DataFrames for the GR logs.
+        title1, title2 (str): Titles for the two plots.
+
+    Returns:
+        None
+    """
+    fig, axes = plt.subplots(1, 2, figsize=(14, fundo // 14), sharey=True)
+    
+    # Plot linear RES logs
+    ax1 = axes[0]
+    x = df['ILD']
+    y = df['TDEP']
+    x_2 = df2['ILD']
+    y_2 = df2['TDEP']
+
+    ax1.plot(x, y, label='ILD 1', color='green', linewidth=0.75, linestyle='--')
+    ax1.plot(x_2, y_2, label='ILD 2', color='green', linewidth=0.75, linestyle='--')
+    # Set the X-axis ticks and labels for both res ranges 
+    sequence = np.arange(-0.7, 1.41, 0.11) 
+    ax1.set_xticks(sequence)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax1.xaxis.set_ticks_position('top')
+    ax1.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax1.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax1.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax1.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax1.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax1.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax1.set_xlim(-0.7, 1.3)
+    ax1.set_ylim(0, df['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax1.invert_yaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax1.set_title(title1, fontweight='bold')
+    ax1.set_xlabel('ILD', fontweight='bold')
+    ax1.set_ylabel('TDEP', fontweight='bold')
+    ax1.legend()
+
+    # Plot GR logs
+    ax2 = axes[1]
+
+        # Set the X-axis ticks and labels for both GR ranges (0-150 and 150-300)
+    ticks_x_axis = [0,  15,  30,  45,  60,  75,  90, 105, 120, 135, 150]
+    labels_x_axis = ['0\n150', '15\n165', '30\n180', '45\n195', '60\n210', 
+                     '75\n225', '90\n240', '105\n255', '120\n270', '135\n285', '150\n300']
+    ax2.set_xticks(ticks_x_axis)
+    ax2.set_xticklabels(labels_x_axis)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax2.xaxis.set_ticks_position('top')
+    ax2.xaxis.set_label_position('top')
+
+    for df_gr, color, label in zip([df3, df4, df5, df6], ['lightblue', 'lightgreen', 'yellow', 'salmon'], ['GR 2', 'GR 3', 'GR 4', 'GR 5']):
+        x_gr_0_150 = df_gr['GR']
+        y_gr_0_150 = df_gr['TDEP']
+
+        df_gr_150_300 = df_gr.copy()
+        df_gr_150_300['GR'] = df_gr_150_300['GR'] - 150
+        x_gr_150_300 = df_gr_150_300['GR']
+        y_gr_150_300 = df_gr_150_300['TDEP']
+
+        ax2.plot(x_gr_0_150, y_gr_0_150, label=label, color=color, linewidth=1.5)
+        ax2.plot(x_gr_150_300, y_gr_150_300, color=color, linewidth=1.5)
+
+    x_0_150 = df_spliced['GR']
+    y_0_150 = df_spliced['TDEP']
+
+    df_150_300 = df_spliced.copy()
+    df_150_300['GR'] = df_150_300['GR'] - 150
+    x_150_300 = df_150_300['GR']
+    y_150_300 = df_150_300['TDEP']
+
+    ax2.plot(x_0_150, y_0_150, label='GR Emendado', color='black', linewidth=0.5, linestyle='--', zorder=5)
+    ax2.plot(x_150_300, y_150_300, color='black', linewidth=0.5, linestyle='--', zorder=5)
+
+    ax2.set_title(title2, fontweight='bold')
+    ax2.set_xlabel('GR', fontweight='bold')
+    # Format the Y-axis tick labels to display intervals of 50
+    ax2.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax2.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax2.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax2.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax2.yaxis.set_major_locator(plt.MultipleLocator(5))
+    ax2.set_xlim(0, 150)
+    ax2.set_ylim(0, df_spliced['TDEP'].max())
+
+        # Invert the Y-axis to represent depth increasing downwards
+    ax2.invert_yaxis()
+    ax2.legend()
+
+    # Adjust spacing between subplots
+    plt.tight_layout()
