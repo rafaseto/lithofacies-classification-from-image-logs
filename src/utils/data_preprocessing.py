@@ -252,9 +252,23 @@ def extract_coating(base_path):
     return agp_data
 
 
-def create_df_subset(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], curve: str):
+def create_df_subset(
+    well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], 
+    curves: List[str]
+) -> Dict[str, Dict[int, Dict[int, pd.DataFrame]]]:
+    """
+    Cria um subconjunto de DataFrames contendo as colunas especificadas em 'curves' para cada poço, 
+    arquivo lógico e frame no dicionário fornecido.
+
+    Args:
+        well_df_dict (Dict): Dicionário contendo os dados dos poços organizados hierarquicamente.
+        curves (List[str]): Lista de colunas a serem selecionadas, incluindo obrigatoriamente 'TDEP'.
+
+    Returns:
+        Dict: Dicionário com a mesma estrutura que 'well_df_dict', mas contendo apenas os subconjuntos das colunas especificadas.
+    """
     curve_data = {}
-    
+
     for well, w_dict in well_df_dict.items():
         curve_data[well] = {}
 
@@ -263,10 +277,13 @@ def create_df_subset(well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]]
 
             for frame, df in lf_dict.items():
                 try:
-                    curve_df = df[['TDEP', curve]]
+                    # Seleciona apenas as colunas que existem no DataFrame atual
+                    columns_to_select = ['TDEP'] + [curve for curve in curves if curve in df.columns]
+                    curve_df = df[columns_to_select]
 
                     curve_data[well][logical_file][frame] = curve_df
-                except:
+                except Exception as e:
+                    print(f"Erro ao processar well={well}, logical_file={logical_file}, frame={frame}: {e}")
                     pass
                 
     return curve_data
