@@ -784,9 +784,12 @@ def plot_combined(df, df2, df_spliced, df3, df4, df5, df6, title1, title2, fundo
     y = df['TDEP']
     x_2 = df2['ILD']
     y_2 = df2['TDEP']
+    x_spliced = df_spliced['ILD']
+    y_spliced = df_spliced['TDEP']
 
-    ax1.plot(x, y, label='ILD 1', color='green', linewidth=0.75, linestyle='--')
-    ax1.plot(x_2, y_2, label='ILD 2', color='green', linewidth=0.75, linestyle='--')
+    ax1.plot(x, y, label='ILD 1', color='lightgreen', linewidth=0.75, zorder=1)
+    ax1.plot(x_2, y_2, label='ILD 2', color='lightgreen', linewidth=0.75, zorder=1)
+    ax1.plot(x_spliced, y_spliced, label='ILD spliced', color='black', linestyle='--', linewidth=0.75, zorder=2)
     # Set the X-axis ticks and labels for both res ranges 
     sequence = np.arange(-0.7, 1.41, 0.11) 
     ax1.set_xticks(sequence)
@@ -835,7 +838,7 @@ def plot_combined(df, df2, df_spliced, df3, df4, df5, df6, title1, title2, fundo
     ax2.xaxis.set_ticks_position('top')
     ax2.xaxis.set_label_position('top')
 
-    for df_gr, color, label in zip([df3, df4, df5, df6], ['lightblue', 'lightgreen', 'yellow', 'salmon'], ['GR 2', 'GR 3', 'GR 4', 'GR 5']):
+    for df_gr, color, label in zip([df3, df4, df5, df6], ['lightblue', 'lightgreen', 'yellow', 'salmon'], ['GR 1', 'GR 2', 'GR 3', 'GR 4']):
         x_gr_0_150 = df_gr['GR']
         y_gr_0_150 = df_gr['TDEP']
 
