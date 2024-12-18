@@ -287,3 +287,27 @@ def create_df_subset(
                     pass
                 
     return curve_data
+
+
+def remove_nan_values(
+    well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], 
+) -> None:
+    """
+    Remove lines with NaN values from the DataFrames.
+
+    Args:
+        well_df_dict (Dict[str, Dict[int, Dict[int, pd.DataFrame]]]): A nested dictionary where:
+            - The outer keys are well names (str),
+            - The second-level keys are logical file indices (int),
+            - The third-level keys are frame indices (int),
+            - The values are pandas DataFrames containing well log data.
+    """
+
+    for well, w_dict in well_df_dict.items():
+        for logical_file, lf_dict in w_dict.items():
+            for frame, df in lf_dict.items():
+                try:
+                    # Remove lines with NaN
+                    df.dropna(inplace=True)
+                except:
+                    pass
