@@ -157,8 +157,12 @@ def spliced_dfs_to_csv(well_df_dict: Dict[str, pd.DataFrame], base_dir:str) -> N
         # Ensure the directories exist before saving the CSV
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
-        # Save the DataFrame as a CSV file
-        df.to_csv(file_path, index=False)
+        # Try to save the DataFrame as a CSV file
+        try:
+            df.to_csv(file_path, index=False)
+        except Exception as e:
+            print(f"Error creating the CSV file for the well {well}: {e}")
+            
 
 
 def load_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.DataFrame]]]:
