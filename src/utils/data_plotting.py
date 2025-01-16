@@ -922,7 +922,7 @@ def plot_nphi_logs_3_runs(
     ax.plot(x_3, y_3, label='Corrida 2', color='lightgreen', linestyle='--', linewidth=0.75, zorder=3)
 
     # Set the X-axis ticks and labels for both NPHI ranges 
-    ticks_x_axis = list(range(-15, 45, 10))
+    ticks_x_axis = list(range(-15, 46, 3))
     ax.set_xticks(ticks_x_axis)
 
     # Position X-axis ticks and labels at the top of the plot
