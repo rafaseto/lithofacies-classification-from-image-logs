@@ -957,3 +957,132 @@ def plot_nphi_logs_3_runs(
 
     # Display the legend for the GR log
     ax.legend()
+
+
+def plot_cali_logs_5_runs(df_spliced: pd.DataFrame, 
+                        df2: pd.DataFrame,
+                        df3: pd.DataFrame,
+                        df4: pd.DataFrame,
+                        df5: pd.DataFrame, 
+                        title: str) -> None:
+
+    fig, ax = plt.subplots(1, 1, figsize=(4, df_spliced['TDEP'].max()//14))
+
+    # Extract CALI and TDEP values for plotting the GR log in the range 0 to 150
+    x_0_150 = df_spliced['CALI']
+    y_0_150 = df_spliced['TDEP']
+
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df_150_300 = df_spliced.copy()
+    df_150_300['CALI'] = df_150_300['CALI'] - 10
+    x_150_300 = df_150_300['CALI']
+    y_150_300 = df_150_300['TDEP']
+
+    # Plot the original GR logs (0 to 150 range) with blue color
+    ax.plot(x_0_150, y_0_150, label=f'CALI Emendado', color='black', linewidth=0.25, zorder=1)
+
+    # Plot the adjusted GR logs (150 to 300 range) with the same color and style
+    ax.plot(x_150_300, y_150_300, color='black', linewidth=0.25, zorder=1)
+
+    # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
+    x2_0_150 = df2['CALI']
+    y2_0_150 = df2['TDEP']
+
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df2_150_300 = df2.copy()
+    df2_150_300['CALI'] = df2_150_300['CALI'] - 10
+    x2_150_300 = df2_150_300['CALI']
+    y2_150_300 = df2_150_300['TDEP']
+
+    # Plot the original GR logs (0 to 150 range) with red color
+    ax.plot(x2_0_150, y2_0_150, label='Corrida 1', color='salmon', linewidth=0.75, linestyle='--', zorder=2)
+
+    # Plot the adjusted GR logs (150 to 300 range) with the same color and style
+    ax.plot(x2_150_300, y2_150_300, color='salmon', linewidth=0.75, linestyle='--', zorder=2)
+
+    # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
+    x3_0_150 = df3['CALI']
+    y3_0_150 = df3['TDEP']
+
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df3_150_300 = df3.copy()
+    df3_150_300['CALI'] = df3_150_300['CALI'] - 10
+    x3_150_300 = df3_150_300['CALI']
+    y3_150_300 = df3_150_300['TDEP']
+
+    # Plot the original GR logs (0 to 150 range) with blue color
+    ax.plot(x3_0_150, y3_0_150, label='Corrida 2', color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
+
+    # Plot the adjusted GR logs (150 to 300 range) with the same color and style
+    ax.plot(x3_150_300, y3_150_300, color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
+
+        # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
+    x4_0_150 = df4['CALI']
+    y4_0_150 = df4['TDEP']
+
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df4_150_300 = df4.copy()
+    df4_150_300['CALI'] = df4_150_300['CALI'] - 10
+    x4_150_300 = df4_150_300['CALI']
+    y4_150_300 = df4_150_300['TDEP']
+
+    # Plot the original GR logs (0 to 150 range) with green color
+    ax.plot(x4_0_150, y4_0_150, label='Corrida 3', color='lightgreen', linewidth=0.75, linestyle='--', zorder=4)
+
+    # Plot the adjusted GR logs (150 to 300 range) with the same color and style
+    ax.plot(x4_150_300, y4_150_300, color='lightgreen', linewidth=0.75, linestyle='--', zorder=4)
+
+        # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
+    x5_0_150 = df5['CALI']
+    y5_0_150 = df5['TDEP']
+
+    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
+    df5_150_300 = df5.copy()
+    df5_150_300['CALI'] = df5_150_300['CALI'] - 10
+    x5_150_300 = df5_150_300['CALI']
+    y5_150_300 = df5_150_300['TDEP']
+
+    # Plot the original GR logs (0 to 150 range) with red color
+    ax.plot(x5_0_150, y5_0_150, label='Corrida 4', color='yellow', linewidth=0.75, linestyle='--', zorder=5)
+
+    # Plot the adjusted GR logs (150 to 300 range) with the same color and style
+    ax.plot(x5_150_300, y5_150_300, color='yellow', linewidth=0.75, linestyle='--', zorder=5)
+
+    # Set the X-axis ticks and labels for both GR ranges (0-150 and 150-300)
+    ticks_x_axis = [6,  7,  8,  9,  10,  11,  12, 13, 14, 15, 16]
+    labels_x_axis = ['6\n16', '7\n17', '8\n18', '9\n19', '10\n20', 
+                     '11\n21', '12\n22', '13\n23', '14\n24', '15\n25', '16\n26']
+    ax.set_xticks(ticks_x_axis)
+    ax.set_xticklabels(labels_x_axis)
+
+    # Position X-axis ticks and labels at the top of the plot
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels to display intervals of 50
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
+
+    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines to the plot
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set the gridline interval on the Y-axis
+    ax.yaxis.set_major_locator(plt.MultipleLocator(5))
+
+    # Set X-axis limits to restrict the GR range from 0 to 150
+    ax.set_xlim(6, 16)
+    ax.set_ylim(0, df_spliced['TDEP'].max())
+
+    # Invert the Y-axis to represent depth increasing downwards
+    ax.invert_yaxis()
+
+    # Add title and labels to the X and Y axes with bold font
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('CALI', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend for the GR log
+    ax.legend()
