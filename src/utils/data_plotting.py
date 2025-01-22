@@ -853,9 +853,9 @@ def plot_combined(df, df2, df_spliced, df3, df4, df5, df6, title1, title2, fundo
     x_spliced = df_spliced['ILD']
     y_spliced = df_spliced['TDEP']
 
-    ax1.plot(x, y, label='ILD 1', color='lightgreen', linewidth=0.75, zorder=1)
-    ax1.plot(x_2, y_2, label='ILD 2', color='lightgreen', linewidth=0.75, zorder=1)
-    ax1.plot(x_spliced, y_spliced, label='ILD spliced', color='black', linestyle='--', linewidth=0.75, zorder=2)
+    ax1.plot(x, y, label='Corrida 1', color='orange', linewidth=0.75, linestyle='--', zorder=3)
+    ax1.plot(x_2, y_2, label='Corrida 2', color='pink', linewidth=0.75, linestyle='--', zorder=3)
+    ax1.plot(x_spliced, y_spliced, label='RES emendada', color='black',  linewidth=1.25, zorder=2)
     # Set the X-axis ticks and labels for both res ranges 
     sequence = np.arange(-0.7, 1.41, 0.11) 
     ax1.set_xticks(sequence)
