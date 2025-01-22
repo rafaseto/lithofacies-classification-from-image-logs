@@ -1385,10 +1385,10 @@ def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
     ax.plot(x_2_, y_2_, color='salmon', linewidth=0.75, linestyle='--', zorder=3)
 
     # Plot the RHOB logs in the range of 1-2 
-    ax.plot(x_2, y_2, label='Corrida 2', color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
+    ax.plot(x_3, y_3, label='Corrida 2', color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
 
     # Plot the original RHOB logs with 
-    ax.plot(x_2_, y_2_, color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
+    ax.plot(x_3_, y_3_, color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
 
     # Set the X-axis ticks and labels for both RHOB ranges 
     sequence = np.arange(2, 3.05, 0.05) 
