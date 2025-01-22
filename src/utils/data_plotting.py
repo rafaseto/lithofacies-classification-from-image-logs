@@ -1092,10 +1092,10 @@ def plot_cali_logs_5_runs(df_spliced: pd.DataFrame,
     y_150_300 = df_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with blue color
-    ax.plot(x_0_150, y_0_150, label=f'CALI Emendado', color='black', linewidth=0.25, zorder=1)
+    ax.plot(x_0_150, y_0_150, label=f'CALI Emendado', color='black', linewidth=1.25, zorder=1)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
-    ax.plot(x_150_300, y_150_300, color='black', linewidth=0.25, zorder=1)
+    ax.plot(x_150_300, y_150_300, color='black', linewidth=1.25, zorder=1)
 
     # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x2_0_150 = df2['CALI']
