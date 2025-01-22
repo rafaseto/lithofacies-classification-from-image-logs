@@ -918,8 +918,8 @@ def plot_nphi_logs_3_runs(
 
     # Plot the original NPHI logs with 
     ax.plot(x, y, label='NPHI Emendado', color='black', linewidth=1.25, zorder=2)
-    ax.plot(x_2, y_2, label='Corrida 1', color='lightgreen', linestyle='--', linewidth=0.75, zorder=3)
-    ax.plot(x_3, y_3, label='Corrida 2', color='lightgreen', linestyle='--', linewidth=0.75, zorder=3)
+    ax.plot(x_2, y_2, label='Corrida 1', color='salmon', linestyle='--', linewidth=0.75, zorder=3)
+    ax.plot(x_3, y_3, label='Corrida 2', color='lightblue', linestyle='--', linewidth=0.75, zorder=3)
 
     # Set the X-axis ticks and labels for both NPHI ranges 
     ticks_x_axis = list(range(-15, 46, 3))
