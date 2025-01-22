@@ -1372,6 +1372,11 @@ def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
     x_2_ = df2_copy['RHOB']
     y_2_ = df2_copy['TDEP']
 
+    df3_copy = df3.copy()
+    df3_copy['RHOB'] = df3_copy['RHOB'] + 1
+    x_3_ = df3_copy['RHOB']
+    y_3_ = df3_copy['TDEP']
+
     # Plot the RHOB logs in the range of 1-2 
     ax.plot(x, y, label='RHOB emendado', color='black', linewidth=1.25, zorder=2)
 
