@@ -1303,9 +1303,19 @@ def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
     plot_drho(ax, df3, 0, 'lightblue', 'Corrida 2')
     plot_drho(ax, df3, 1, 'lightblue', None)
 
+    interval = (df['DRHO'].max() - df['DRHO'].min()) / 20
     # Set X-axis ticks and labels
-    sequence = np.arange(-1, 1.1, 0.1)
+    sequence = np.arange(df['DRHO'].min(), df['DRHO'].max() + interval, interval)
     ax.set_xticks(sequence)
+
+    # Define os índices dos rótulos (inclui o primeiro, último e mais 4 rótulos uniformemente distribuídos)
+    num_labels = 6  # Primeiro, último e mais 4 intermediários
+    label_indices = np.linspace(0, len(sequence) - 1, num_labels, dtype=int)
+
+    # Cria os rótulos com base nos índices selecionados
+    labels = [f"{sequence[i]:.2f}" if i in label_indices else '' for i in range(len(sequence))]
+    ax.set_xticklabels(labels)
+
     ax.xaxis.set_ticks_position('top')
     ax.xaxis.set_label_position('top')
 
@@ -1321,7 +1331,7 @@ def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
 
     # Set gridline interval and axis limits
     ax.yaxis.set_major_locator(plt.MultipleLocator(5))
-    ax.set_xlim(-1, 1)
+    ax.set_xlim(df['DRHO'].min(), df['DRHO'].max())
     ax.set_ylim(0, df['TDEP'].max())
     ax.invert_yaxis()
 
@@ -1332,9 +1342,6 @@ def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
 
     # Display the legend
     ax.legend()
-
-    # Show the plot
-    plt.show()
 
 
 def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
