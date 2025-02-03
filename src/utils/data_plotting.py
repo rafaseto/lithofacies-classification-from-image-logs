@@ -1346,97 +1346,79 @@ def plot_drho_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataF
 
 def plot_rhob_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
     """
-    Plots RHOB logs from the provided DataFrame on the specified axes.
+    Plots RHOB logs from three DataFrames on a single plot.
 
     Args:
-        df (pd.DataFrame): DataFrame containing the well log data, 
-            where 'GR' represents gamma-ray values and 'TDEP' represents depth values.
+        df (pd.DataFrame): DataFrame containing the first set of well log data 
+            ('DRHO' and 'TDEP').
+        df2 (pd.DataFrame): DataFrame containing the second set of well log data.
+        df3 (pd.DataFrame): DataFrame containing the third set of well log data.
         title (str): Title for the plot.
 
     Returns:
         None
     """
-    # fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
+    def plot_rhob(ax, data, offset, color, label):
+        """
+        Helper function to plot RHOB logs with an optional offset.
+        """
+        x = data['RHOB'] + offset
+        y = data['TDEP']
+        if (color == 'black'):
+            ax.plot(x, y, label=label if offset == 0 else None, color=color, linewidth=1.25, zorder=2)
+        else:
+            ax.plot(x, y, label=label if offset == 0 else None, color=color, linewidth=0.75, linestyle='--', zorder=3)
 
-    # Extract RHOB and TDEP values for plotting the RHOB logs
-    x = df['RHOB']
-    y = df['TDEP']
+    # Initialize the figure and axes
+    #fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max() // 14))
 
-    x_2 = df2['RHOB']
-    y_2 = df2['TDEP']
+    # Plot the RHOB logs for each DataFrame
+    plot_rhob(ax, df, 0, 'black', 'RHOB emendado')
+    plot_rhob(ax, df, 1, 'black', None)
+    plot_rhob(ax, df2, 0, 'salmon', 'Corrida 1')
+    plot_rhob(ax, df2, 1, 'salmon', None)
+    plot_rhob(ax, df3, 0, 'lightblue', 'Corrida 2')
+    plot_rhob(ax, df3, 1, 'lightblue', None)
 
-    x_3 = df3['RHOB']
-    y_3 = df3['TDEP']
-
-    # Create a copy of the DataFrame to adjust GR values for the range 150 to 300
-    df_copy = df.copy()
-    df_copy['RHOB'] = df_copy['RHOB'] + 1
-    x_ = df_copy['RHOB']
-    y_ = df_copy['TDEP']
-
-    df2_copy = df2.copy()
-    df2_copy['RHOB'] = df2_copy['RHOB'] + 1
-    x_2_ = df2_copy['RHOB']
-    y_2_ = df2_copy['TDEP']
-
-    df3_copy = df3.copy()
-    df3_copy['RHOB'] = df3_copy['RHOB'] + 1
-    x_3_ = df3_copy['RHOB']
-    y_3_ = df3_copy['TDEP']
-
-    # Plot the RHOB logs in the range of 1-2 
-    ax.plot(x, y, label='RHOB emendado', color='black', linewidth=1.25, zorder=2)
-
-    # Plot the original RHOB logs with 
-    ax.plot(x_, y_, color='black', linewidth=1.25, zorder=2)
-
-    # Plot the RHOB logs in the range of 1-2 
-    ax.plot(x_2, y_2, label='Corrida 1', color='salmon', linestyle='--', linewidth=0.75, zorder=3)
-
-    # Plot the original RHOB logs with 
-    ax.plot(x_2_, y_2_, color='salmon', linewidth=0.75, linestyle='--', zorder=3)
-
-    # Plot the RHOB logs in the range of 1-2 
-    ax.plot(x_3, y_3, label='Corrida 2', color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
-
-    # Plot the original RHOB logs with 
-    ax.plot(x_3_, y_3_, color='lightblue', linewidth=0.75, linestyle='--', zorder=3)
-
-    # Set the X-axis ticks and labels for both RHOB ranges 
-    sequence = np.arange(2, 3.05, 0.05) 
+    # Set X-axis ticks and labels
+    sequence = np.arange(2, 3.05, 0.05)
     ax.set_xticks(sequence)
 
-    # Position X-axis ticks and labels at the top of the plot
+    # Define os índices dos rótulos (inclui o primeiro, último e mais 4 rótulos uniformemente distribuídos)
+    num_labels = 6  # Primeiro, último e mais 4 intermediários
+    label_indices = np.linspace(0, len(sequence) - 1, num_labels, dtype=int)
+
+    # Cria os rótulos com base nos índices selecionados
+    labels = [f"{sequence[i]:.2f}" if i in label_indices else '' for i in range(len(sequence))]
+    ax.set_xticklabels(labels)
+
     ax.xaxis.set_ticks_position('top')
     ax.xaxis.set_label_position('top')
 
-    # Format the Y-axis tick labels to display intervals of 50
+    # Format the Y-axis tick labels
     ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 50 == 0 else ''))
 
-    # Disable X-axis and Y-axis tick markers (removes small tick lines)
+    # Disable tick markers
     ax.tick_params(axis='x', which='both', bottom=False, top=False)
     ax.tick_params(axis='y', which='both', left=False, right=False)
 
-    # Add gridlines to the plot
+    # Add gridlines
     ax.grid(True, axis='both', zorder=0)
 
-    # Set the gridline interval on the Y-axis
+    # Set gridline interval and axis limits
     ax.yaxis.set_major_locator(plt.MultipleLocator(5))
-
-    # Set X-axis limits to restrict the GR range from 0 to 150
     ax.set_xlim(2, 3)
     ax.set_ylim(0, df['TDEP'].max())
-
-    # Invert the Y-axis to represent depth increasing downwards
     ax.invert_yaxis()
 
-    # Add title and labels to the X and Y axes with bold font
+    # Add title and labels
     ax.set_title(title, fontweight='bold')
     ax.set_xlabel('RHOB', fontweight='bold')
     ax.set_ylabel('TDEP', fontweight='bold')
 
-    # Display the legend for the GR log
+    # Display the legend
     ax.legend()
+
 
 
 def plot_rhob_drho(rhob_spliced, rhob_01, rhob_02, drho_spliced, drho_01, drho_02, title_rhob, title_drho):
