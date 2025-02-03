@@ -1267,7 +1267,7 @@ def plot_cali_logs_5_runs(df_spliced: pd.DataFrame,
     ax.legend()
 
 
-def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
+def plot_drho_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
     """
     Plots DRHO logs from three DataFrames on a single plot.
 
@@ -1293,7 +1293,7 @@ def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
             ax.plot(x, y, label=label if offset == 0 else None, color=color, linewidth=0.75, linestyle='--', zorder=3)
 
     # Initialize the figure and axes
-    fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max() // 14))
+    #fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max() // 14))
 
     # Plot the RHOB logs for each DataFrame
     plot_drho(ax, df, 0, 'black', 'DRHO emendado')
@@ -1344,7 +1344,7 @@ def plot_drho_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
     ax.legend()
 
 
-def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
+def plot_rhob_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
     """
     Plots RHOB logs from the provided DataFrame on the specified axes.
 
@@ -1356,7 +1356,7 @@ def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
     Returns:
         None
     """
-    fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
+    # fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max()//14))
 
     # Extract RHOB and TDEP values for plotting the RHOB logs
     x = df['RHOB']
@@ -1437,3 +1437,25 @@ def plot_rhob_logs_3_runs(df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame
 
     # Display the legend for the GR log
     ax.legend()
+
+
+def plot_rhob_drho(rhob_spliced, rhob_01, rhob_02, drho_spliced, drho_01, drho_02, title_rhob, title_drho):
+    """
+    Combines two plots (RHOB logs and DRHO logs) side by side in a single figure.
+
+    Args:
+        rhob_spliced, rhob_01, rhob_02 (pd.DataFrame): DataFrames for the RHOB logs.
+        drho_spliced, drho_01, drho_02 (pd.DataFrame): DataFrames for the DRHO logs.
+        title_rhob, title_drho (str): Titles for the two plots.
+
+    Returns:
+        None
+    """
+    rhob_bottom = max(rhob_spliced['TDEP'])
+    drho_bottom = max(drho_spliced['TDEP'])
+    well_bottom = max(rhob_bottom, drho_bottom)
+
+    fig, axes = plt.subplots(1, 2, figsize=(16, well_bottom // 14), sharey=True)
+    
+    plot_rhob_logs_3_runs(axes[0], rhob_spliced, rhob_01, rhob_02, title_rhob)
+    plot_drho_logs_3_runs(axes[1], drho_spliced, drho_01, drho_02, title_drho)
