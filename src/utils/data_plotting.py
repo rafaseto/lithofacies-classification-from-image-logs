@@ -1298,10 +1298,10 @@ def plot_drho_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataF
     # Plot the RHOB logs for each DataFrame
     plot_drho(ax, df, 0, 'black', 'DRHO emendado')
     plot_drho(ax, df, 1, 'black', None)
-    plot_drho(ax, df2, 0, 'salmon', 'Corrida 1')
-    plot_drho(ax, df2, 1, 'salmon', None)
-    plot_drho(ax, df3, 0, 'lightblue', 'Corrida 2')
-    plot_drho(ax, df3, 1, 'lightblue', None)
+    plot_drho(ax, df2, 0, 'lightgreen', 'Corrida 1')
+    plot_drho(ax, df2, 1, 'lightgreen', None)
+    plot_drho(ax, df3, 0, 'gold', 'Corrida 2')
+    plot_drho(ax, df3, 1, 'gold', None)
 
     interval = (df['DRHO'].max() - df['DRHO'].min()) / 20
     # Set X-axis ticks and labels
