@@ -606,7 +606,7 @@ def plot_gr_logs_5_runs(df_spliced: pd.DataFrame,
     y2_150_300 = df2_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with red color
-    ax.plot(x2_0_150, y2_0_150, label='GR 1', color='salmon', linewidth=1, zorder=4)
+    ax.plot(x2_0_150, y2_0_150, label='Corrida GR 1', color='salmon', linewidth=1, zorder=4)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
     ax.plot(x2_150_300, y2_150_300, color='salmon', linewidth=1, zorder=4)
@@ -622,7 +622,7 @@ def plot_gr_logs_5_runs(df_spliced: pd.DataFrame,
     y3_150_300 = df3_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with blue color
-    ax.plot(x3_0_150, y3_0_150, label='GR 2', color='lightblue', linewidth=1, zorder=3)
+    ax.plot(x3_0_150, y3_0_150, label='Corrida GR 2', color='lightblue', linewidth=1, zorder=3)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
     ax.plot(x3_150_300, y3_150_300, color='lightblue', linewidth=1, zorder=3)
@@ -638,7 +638,7 @@ def plot_gr_logs_5_runs(df_spliced: pd.DataFrame,
     y4_150_300 = df4_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with green color
-    ax.plot(x4_0_150, y4_0_150, label='GR 3', color='lightgreen', linewidth=1, zorder=2)
+    ax.plot(x4_0_150, y4_0_150, label='Corrida GR 3', color='lightgreen', linewidth=1, zorder=2)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
     ax.plot(x4_150_300, y4_150_300, color='lightgreen', linewidth=1, zorder=2)
@@ -654,7 +654,7 @@ def plot_gr_logs_5_runs(df_spliced: pd.DataFrame,
     y5_150_300 = df5_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with red color
-    ax.plot(x5_0_150, y5_0_150, label='GR 4', color='yellow', linewidth=1, zorder=1)
+    ax.plot(x5_0_150, y5_0_150, label='Corrida GR 4', color='yellow', linewidth=1, zorder=1)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
     ax.plot(x5_150_300, y5_150_300, color='yellow', linewidth=1, zorder=1)
