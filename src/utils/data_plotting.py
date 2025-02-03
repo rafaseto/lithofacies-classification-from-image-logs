@@ -1441,3 +1441,32 @@ def plot_rhob_drho(rhob_spliced, rhob_01, rhob_02, drho_spliced, drho_01, drho_0
     
     plot_rhob_logs_3_runs(axes[0], rhob_spliced, rhob_01, rhob_02, title_rhob)
     plot_drho_logs_3_runs(axes[1], drho_spliced, drho_01, drho_02, title_drho)
+
+
+def plot_cali_rhob_drho(
+        cali_spliced, cali_01, cali_02, cali_03, cali_04,
+        rhob_spliced, rhob_01, rhob_02, 
+        drho_spliced, drho_01, drho_02, 
+        title_cali, title_rhob, title_drho):
+    """
+    Combines three plots (CALI logs, RHOB logs and DRHO logs) side by side in a single figure.
+
+    Args:
+        cali_spliced, cali_01, cali_02, cali_03, cali_04 (pd.DataFrame): DataFrames for the CALI logs.
+        rhob_spliced, rhob_01, rhob_02 (pd.DataFrame): DataFrames for the RHOB logs.
+        drho_spliced, drho_01, drho_02 (pd.DataFrame): DataFrames for the DRHO logs.
+        title_cali, title_rhob, title_drho (str): Titles for the three plots.
+
+    Returns:
+        None
+    """
+    cali_bottom = max(cali_spliced['TDEP'])
+    rhob_bottom = max(rhob_spliced['TDEP'])
+    drho_bottom = max(drho_spliced['TDEP'])
+    well_bottom = max(cali_bottom, rhob_bottom, drho_bottom)
+
+    fig, axes = plt.subplots(1, 3, figsize=(20, well_bottom // 14), sharey=True)
+    
+    plot_cali_logs_5_runs(axes[0], cali_spliced, cali_01, cali_02, cali_03, cali_04, title_cali)
+    plot_rhob_logs_3_runs(axes[1], rhob_spliced, rhob_01, rhob_02, title_rhob)
+    plot_drho_logs_3_runs(axes[2], drho_spliced, drho_01, drho_02, title_drho)
