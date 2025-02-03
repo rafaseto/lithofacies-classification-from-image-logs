@@ -1174,10 +1174,10 @@ def plot_cali_logs_5_runs(ax, df_spliced: pd.DataFrame,
     y2_150_300 = df2_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with red color
-    ax.plot(x2_0_150, y2_0_150, label='Corrida 1', color='darkorange', linewidth=0.75, linestyle='--', zorder=2)
+    ax.plot(x2_0_150, y2_0_150, label='Corrida 1', color='orange', linewidth=0.75, linestyle='--', zorder=2)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
-    ax.plot(x2_150_300, y2_150_300, color='darkorange', linewidth=0.75, linestyle='--', zorder=2)
+    ax.plot(x2_150_300, y2_150_300, color='orange', linewidth=0.75, linestyle='--', zorder=2)
 
     # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x3_0_150 = df3['CALI']
@@ -1190,10 +1190,10 @@ def plot_cali_logs_5_runs(ax, df_spliced: pd.DataFrame,
     y3_150_300 = df3_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with blue color
-    ax.plot(x3_0_150, y3_0_150, label='Corrida 2', color='darkviolet', linewidth=0.75, linestyle='--', zorder=3)
+    ax.plot(x3_0_150, y3_0_150, label='Corrida 2', color='mediumpurple', linewidth=0.75, linestyle='--', zorder=3)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
-    ax.plot(x3_150_300, y3_150_300, color='darkviolet', linewidth=0.75, linestyle='--', zorder=3)
+    ax.plot(x3_150_300, y3_150_300, color='mediumpurple', linewidth=0.75, linestyle='--', zorder=3)
 
         # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x4_0_150 = df4['CALI']
@@ -1206,10 +1206,10 @@ def plot_cali_logs_5_runs(ax, df_spliced: pd.DataFrame,
     y4_150_300 = df4_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with green color
-    ax.plot(x4_0_150, y4_0_150, label='Corrida 3', color='lightpink', linewidth=0.75, linestyle='--', zorder=4)
+    ax.plot(x4_0_150, y4_0_150, label='Corrida 3', color='magenta', linewidth=0.75, linestyle='--', zorder=4)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
-    ax.plot(x4_150_300, y4_150_300, color='lightpink', linewidth=0.75, linestyle='--', zorder=4)
+    ax.plot(x4_150_300, y4_150_300, color='magenta', linewidth=0.75, linestyle='--', zorder=4)
 
         # Extract GR and TDEP values for plotting the GR log in the range 0 to 150
     x5_0_150 = df5['CALI']
@@ -1222,10 +1222,10 @@ def plot_cali_logs_5_runs(ax, df_spliced: pd.DataFrame,
     y5_150_300 = df5_150_300['TDEP']
 
     # Plot the original GR logs (0 to 150 range) with red color
-    ax.plot(x5_0_150, y5_0_150, label='Corrida 4', color='olivedrab', linewidth=0.75, linestyle='--', zorder=5)
+    ax.plot(x5_0_150, y5_0_150, label='Corrida 4', color='lightpink', linewidth=0.75, linestyle='--', zorder=5)
 
     # Plot the adjusted GR logs (150 to 300 range) with the same color and style
-    ax.plot(x5_150_300, y5_150_300, color='olivedrab', linewidth=0.75, linestyle='--', zorder=5)
+    ax.plot(x5_150_300, y5_150_300, color='lightpink', linewidth=0.75, linestyle='--', zorder=5)
 
     # Set the X-axis ticks and labels for both GR ranges (0-150 and 150-300)
     ticks_x_axis = [6,  7,  8,  9,  10,  11,  12, 13, 14, 15, 16]
