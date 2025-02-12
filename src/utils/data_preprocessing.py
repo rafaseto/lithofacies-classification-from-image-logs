@@ -256,17 +256,23 @@ def extract_coating(base_path):
     return agp_data
 
 
-def convert_inches_to_cm(measurement):
+def convert_inches_to_float(measurement: str) -> float:
     """
-    Converts a measurement in inches (e.g., "13 3/8") to centimeters.
+    Converts a measurement in string representing inches (e.g., "13 3/8") to float.
 
     Args:
         measurement (str): The measurement in inches, possibly including a fraction.
 
     Returns:
-        float: The measurement converted to centimeters, or None if the input is invalid.
+        float: The measurement converted to float, or None if the input is invalid.
+
+    Raises:
+        TypeError: If the input is not a string.
     """
-    if not measurement:
+    if not isinstance(measurement, str):
+        raise TypeError(f"Expected a string, but got {type(measurement).__name__}")
+
+    if not measurement.strip():
         return None
 
     try:
@@ -282,8 +288,7 @@ def convert_inches_to_cm(measurement):
         # Total measurement in inches
         total_inches = whole_number + fraction_value
 
-        # Convert inches to centimeters
-        return total_inches * 2.54
+        return total_inches
     except Exception as e:
         print(f"Error converting measurement '{measurement}': {e}")
         return None
