@@ -256,6 +256,47 @@ def extract_coating(base_path):
     return agp_data
 
 
+def extract_coating_diameter(base_path):
+    """
+    Extracts surface and intermediary coating diameters from text files.
+
+    Args:
+        base_path (str): Base path to search for text files.
+
+    Returns:
+        dict: A dictionary where keys are well names and values are
+              dictionaries containing surface and intermediary coating diameters.
+    """
+    agp_data = {}
+
+    data_path = os.path.join(base_path, '**', '*.txt')
+
+    for file in glob.glob(data_path, recursive=True):
+
+        with open(file, "r") as file:
+            content = file.read()
+
+        # RE to find the name of the well
+        well_name_match = re.search(r"PO[ÇC]O\s*:\s*(.*)", content)
+        well_name = well_name_match.group(1).strip() if well_name_match else "Well name not found"
+
+        # RE to find the surface coating diameter
+        surface_coating_diameter_match = re.search(r"REV\.\s*SUPERFICIE\s+[\d.]+\s+\([^)]+\)\s+(\d+\s+\d+\/\d+)", content)
+        surface_coating_diameter = surface_coating_diameter_match.group(1) if surface_coating_diameter_match else None
+
+        # RE to find the intermediary coating diameter
+        intermediary_coating_diameter_match = re.search(r"REV\.\s*INTERMED\.\s+[\d.]+\s+\([^)]+\)\s+(\d+\s+\d+\/\d+)", content)
+        intermediary_coating_diameter = intermediary_coating_diameter_match.group(1) if intermediary_coating_diameter_match else None
+
+        agp_data[well_name] = {
+            "Surface Coating Diameter": surface_coating_diameter,
+            "Intermediary Coating Diameter": intermediary_coating_diameter
+        }
+
+    return agp_data
+
+
+
 def create_df_subset(
     well_df_dict: Dict[str, Dict[int, Dict[int, pd.DataFrame]]], 
     curves: List[str]
