@@ -256,6 +256,39 @@ def extract_coating(base_path):
     return agp_data
 
 
+def convert_inches_to_cm(measurement):
+    """
+    Converts a measurement in inches (e.g., "13 3/8") to centimeters.
+
+    Args:
+        measurement (str): The measurement in inches, possibly including a fraction.
+
+    Returns:
+        float: The measurement converted to centimeters, or None if the input is invalid.
+    """
+    if not measurement:
+        return None
+
+    try:
+        # Split the measurement into whole number and fraction parts
+        parts = measurement.split()
+        whole_number = float(parts[0]) if parts else 0.0  # Whole number part (e.g., 13)
+        fraction = parts[1] if len(parts) > 1 else "0/1"  # Fraction part (e.g., 3/8)
+
+        # Convert the fraction to a decimal
+        numerator, denominator = map(float, fraction.split('/'))
+        fraction_value = numerator / denominator
+
+        # Total measurement in inches
+        total_inches = whole_number + fraction_value
+
+        # Convert inches to centimeters
+        return total_inches * 2.54
+    except Exception as e:
+        print(f"Error converting measurement '{measurement}': {e}")
+        return None
+
+
 def extract_coating_diameter(base_path):
     """
     Extracts surface and intermediary coating diameters from text files.
