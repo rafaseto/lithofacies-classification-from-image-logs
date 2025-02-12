@@ -287,6 +287,20 @@ def convert_inches_to_cm(measurement):
     except Exception as e:
         print(f"Error converting measurement '{measurement}': {e}")
         return None
+    
+
+def map_measurement(measurement, mapping):
+    """
+    Maps a measurement to its corresponding value based on the provided mapping.
+
+    Args:
+        measurement (str): The measurement to map (e.g., "13 3/8").
+        mapping (dict): A dictionary containing the mapping of measurements.
+
+    Returns:
+        str: The mapped measurement, or None if no mapping is found.
+    """
+    return mapping.get(measurement, None)  # Retorna None se a medida não for encontrada
 
 
 def extract_coating_diameter(base_path):
