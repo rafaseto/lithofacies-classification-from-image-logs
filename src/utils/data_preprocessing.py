@@ -226,7 +226,7 @@ def load_spliced_csv_files(base_path: str) -> Dict[str, Dict[str, Dict[str, pd.D
     return csv_data
 
 
-def extract_coating(base_path):
+def extract_coating_location(base_path):
     agp_data = {}
 
     data_path = os.path.join(base_path, '**', '*.txt')
@@ -249,8 +249,8 @@ def extract_coating(base_path):
         rev_intermed = float(rev_intermed_match.group(1)) if rev_intermed_match else None
 
         agp_data[well_name] = {
-            "Rev. Superficie": rev_superficie,
-            "Rev. Intermed.": rev_intermed
+            "Surface Coating": rev_superficie,
+            "Intermediary Coating": rev_intermed
         }
 
     return agp_data
@@ -341,8 +341,8 @@ def extract_coating_diameter(base_path):
         intermediary_coating_diameter = intermediary_coating_diameter_match.group(1) if intermediary_coating_diameter_match else None
 
         agp_data[well_name] = {
-            "Surface Coating Diameter": surface_coating_diameter,
-            "Intermediary Coating Diameter": intermediary_coating_diameter
+            "Surface Coating": surface_coating_diameter,
+            "Intermediary Coating": intermediary_coating_diameter
         }
 
     return agp_data
