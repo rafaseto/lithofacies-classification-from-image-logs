@@ -294,6 +294,40 @@ def convert_inches_to_float(measurement: str) -> float:
         return None
     
 
+def calculate_drill_diameters(coating_diameters: Dict[str, Dict[str, str]], mapping: Dict[str, str]) -> Dict[str, Dict[str, float]]:
+    """
+    Calculates the drill diameter based on the coating diameter.
+
+    Args:
+        coating_diameters(Dict[str, Dict[str, str]]): Dict of dicts with the coating diameters.
+        mapping(Dict[str, str]): Dict with the coating diameters mapped to the drill diameters.
+
+    Returns
+        Dict[str, Dict[str, float]: Dict of dicts with the drill diameters.
+    """
+
+    drill_diameters = {}
+
+    for well, coating_diameter in coating_diameters.items():
+        drill_diameters[well] = {}
+
+        try:
+            surface_drill_diameter = map_measurement(coating_diameter['Surface Coating'], mapping)
+            surface_drill_diameter_float = convert_inches_to_float(surface_drill_diameter)
+            drill_diameters[well]['Surface Drill'] = surface_drill_diameter_float
+        except Exception as e:
+            print(f"Exception with the surface coating of the well {well}: {e}")
+
+        try:
+            intermediary_drill_diameter = map_measurement(coating_diameter['Intermediary Coating'], mapping)
+            intermediary_drill_diameter_float = convert_inches_to_float(intermediary_drill_diameter)
+            drill_diameters[well]['Intermediary Drill'] = intermediary_drill_diameter_float
+        except Exception as e:
+            print(f"Exception with the intermediary coating of the well {well}: {e}")
+    
+    return drill_diameters
+    
+
 def map_measurement(measurement, mapping):
     """
     Maps a measurement to its corresponding value based on the provided mapping.
