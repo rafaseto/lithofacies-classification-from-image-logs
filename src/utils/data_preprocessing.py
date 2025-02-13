@@ -303,7 +303,7 @@ def calculate_drill_diameters(coating_diameters: Dict[str, Dict[str, str]], mapp
         mapping(Dict[str, str]): Dict with the coating diameters mapped to the drill diameters.
 
     Returns
-        Dict[str, Dict[str, float]: Dict of dicts with the drill diameters.
+        Dict[str, Dict[str, float]]: Dict of dicts with the drill diameters.
     """
 
     drill_diameters = {}
