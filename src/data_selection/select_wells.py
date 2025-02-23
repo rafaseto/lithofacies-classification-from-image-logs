@@ -36,20 +36,6 @@ with open("md5_Catalogo_Bacia_do_Reconcavo.txt", "r", encoding="utf-8", errors="
 
 wells_with_agp_and_images = wells_with_ubi_or_cast.intersection(wells_with_agp)
 
-print("Poços que possuem a pasta AGP:")
-for well in sorted(wells_with_agp):
-    print(well)
-
-print("")
-print("")
-
-print("Poços que possuem UBI ou CAST:")
-for well in sorted(wells_with_ubi_or_cast):
-    print(well)
-
-print("")
-print("")
-
 print("Poços que possuem AGP e (UBI ou CAST):")
 for well in sorted(wells_with_agp_and_images):
     print(well)
