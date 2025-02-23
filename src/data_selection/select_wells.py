@@ -2,8 +2,11 @@ import os
 
 catalog_path = "../../data/catalogs"
 
+num_wells_with_images = 0
+
 for catalog in os.listdir(catalog_path):
     wells_with_agp_and_images = set()
+
     with open(f"../../data/catalogs/{catalog}", "r", encoding="utf-8", errors="ignore") as file:
         wells_with_agp = set()
         wells_with_ubi_or_cast = set()
@@ -47,16 +50,20 @@ for catalog in os.listdir(catalog_path):
                     if "parte" in line:
                         well_id = tokens[4] + "/" + tokens[5]
                         wells_with_ubi_or_cast.add(well_id)
+                        num_wells_with_images += 1
                     else:
                         well_id = tokens[3] + "/" + tokens[4]
                         wells_with_ubi_or_cast.add(well_id)
+                        num_wells_with_images += 1
                 except:
                     pass
 
         wells_with_agp_and_images = wells_with_ubi_or_cast.intersection(wells_with_agp)
 
         with open('selected_wells.txt', 'a') as output_file:
-            output_file.write(f"{catalog}:\n")
+            output_file.write(f"{catalog[13:-4]}:\n")
             for well in sorted(wells_with_agp_and_images):
                 output_file.write(f"{well}\n")
             output_file.write("\n\n")
+
+print(f"Number of wells with Acoustic Images: {num_wells_with_images}")
