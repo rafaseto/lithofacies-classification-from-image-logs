@@ -1,17 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.service import Service as ChromeService
 from selenium.webdriver.chrome.service import Service
 import time
 
-# Define um timeout maior para a comunicação entre o Selenium e o ChromeDriver
+# Setting a bigger timeout for communication between Selenium and ChromeDriver
 CHROMEDRIVE_PATH = r"C:\Users\rafae\chromedriver-win64\chromedriver.exe"
-chrome_service = Service(CHROMEDRIVE_PATH)  # Caminho para o chromedriver
+chrome_service = Service(CHROMEDRIVE_PATH)  
 driver = webdriver.Chrome(service=chrome_service)
-driver.set_page_load_timeout(3000)  # Timeout maior (300 segundos)
+driver.set_page_load_timeout(3000)  
 
 BASE_URL = "https://reate.cprm.gov.br/arquivos/index.php/s/87Ny6plVJXljL0C"  
 
