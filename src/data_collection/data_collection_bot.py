@@ -1,17 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import time
 
-# Setting a bigger timeout for communication between Selenium and ChromeDriver
 CHROMEDRIVE_PATH = r"C:\Users\rafae\chromedriver-win64\chromedriver.exe"
 chrome_service = Service(CHROMEDRIVE_PATH)  
-driver = webdriver.Chrome(service=chrome_service)
-driver.set_page_load_timeout(3000)  
+
+options = Options()
+options.page_load_strategy = "none"
+
+driver = webdriver.Chrome(service=chrome_service, options=options)
+driver.set_page_load_timeout(300)
 
 BASE_URL = "https://reate.cprm.gov.br/arquivos/index.php/s/87Ny6plVJXljL0C"  
 
@@ -22,6 +26,9 @@ def navigate_and_download(path):
     # Accessing the page through the base url
     driver.get(BASE_URL)
     time.sleep(2)
+
+    driver.execute_script("window.stop();")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
     body = driver.find_element(By.TAG_NAME, "body")
 
     # Walking through the subdirectories
@@ -58,7 +65,8 @@ def navigate_and_download(path):
             )
             link.click()
             time.sleep(2)
-            print(f"Download iniciado para: {parts[-1]}")
+            driver.execute_script("window.stop();")
+            print(f"Download started for: {parts[-1]}")
             break
         except NoSuchElementException:
             print(f"File {parts[-1]} not found. Scrolling down...")
@@ -71,7 +79,15 @@ def navigate_and_download(path):
 
 with open("../data_selection/selected_wells_images.txt", "r", encoding="utf-8", errors="ignore") as file:
     for path in file:
-        navigate_and_download(path)
+        access_base_url_attempts = 100
+        while access_base_url_attempts > 0:
+            try:
+                navigate_and_download(path)
+                break
+            except (TimeoutException, TimeoutError) as e:
+                print(f"Time out: {e}. Trying again...")
+                access_base_url_attempts -= 1
+                time.sleep(5)
 
 input("Press Enter to close browser...")
 driver.quit()
