@@ -84,8 +84,8 @@ with open("../data_selection/selected_wells_images.txt", "r", encoding="utf-8", 
             try:
                 navigate_and_download(path)
                 break
-            except (TimeoutException, TimeoutError) as e:
-                print(f"Time out: {e}. Trying again...")
+            except (TimeoutException, TimeoutError):
+                print(f"Timeout exception while loading page... Please wait.")
                 access_base_url_attempts -= 1
                 time.sleep(5)
 
