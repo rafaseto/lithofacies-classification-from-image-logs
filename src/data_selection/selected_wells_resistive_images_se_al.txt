@@ -1,0 +1,94 @@
+
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-1315-AL/Perfil Convencional/1-brsa-1315-al_omri2.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-313D-AL/Perfil Convencional/1-brsa-313d-al_obmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-344-AL/Perfil Convencional/1-brsa-344-al_brsa_fmi1.DLIS
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-355D-AL/Perfil Convencional/1-brsa-355d-al_brsa_fmi1.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-355D-AL/Perfil Convencional/1-brsa-355d-al_fmi2.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-410D-AL/Perfil Convencional/1-brsa-410d-al_brsa_fmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-1/1-BRSA-510D-AL/Perfil Convencional/1-brsa-510d-al_brsa_obmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-3/3-BRSA-1283-AL/Perfil Convencional/3-brsa-1283-al_omri2.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-3/3-BRSA-1283-AL/Perfil Convencional/3-brsa-1283-al_omri3.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-6/6-BRSA-437D-AL/Perfil Convencional/6-brsa-437d-al_brsa_fmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-7/Categoria-7_parte1/7-ANB-1D-AL/Perfis_digitais/7-anb-1d-al_brsa_obmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-7/Categoria-7_parte1/7-ANB-2D-AL/Perfis_digitais/7-anb-2d-al_brsa_obmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-7/Categoria-7_parte1/7-FU-135D-AL/Perfis_digitais/7-fu-135d-al_brsa_tsc_fmi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-7/Categoria-7_parte1/7-FU-145D-AL/Perfis_digitais/7-fu-145d-al_brsa_emi.dlis
+../1-Bacia_de_Alagoas/POCO/Categoria-7/Categoria-7_parte4/7-PIR-257D-AL/Perfil Convencional/7-pir-257d-al_brsa_obmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-AURI-25-SE/Perfil Convencional/1-AURI-25-SE_EMI-GRI.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-1291D-SE/Perfil Convencional/1-brsa-1291D-se_cast_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-459-SE/Perfil Convencional/1-brsa-459-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-551-SE/Perfil Convencional/1-brsa-551-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-574-SE/Perfil Convencional/1-brsa-574-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-659-SE/Perfil Convencional/1-brsa-659-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-689-SE/Perfil Convencional/1-brsa-689-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-BRSA-696-SE/Perfil Convencional/1-brsa-696-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-GALP-11-SE/Perfil Convencional/1-GALP-11-SE_FMI-DSI-GR_PRINCIPAL.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte1/1-GALP-11-SE/Perfil Convencional/1-GALP-11-SE_FMI-DSI-GR_REPETIDA.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte2/1-GALP-28-SE/Perfil Convencional/1-galp-28-se_fmi_gr.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-12-SE/Perfil Convencional/1-STAR-12-SEhrifwssdldsngr1.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-5D-SE/Perfil Convencional/1-STAR-5D-SE_fmi-gr-2.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-5D-SE/Perfil Convencional/1-STAR-5D-SE_hgns-gr-1.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-5D-SE/Perfil Durante a Perfuracao/1-STAR-5D-SE_LWD12.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-5D-SE/Perfil Durante a Perfuracao/1-STAR-5D-SE_LWD8.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-5D-SE/Teste de Formacao a Cabo/1-STAR-5D-SE_rft-gr-3.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-6D-SE/Perfil Convencional/1-STAR-6D-SE_AIT-PEX.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-6D-SE/Perfil Durante a Perfuracao/1-MAG-1D-SE_LWD12.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-6D-SE/Perfil Durante a Perfuracao/1-MAG-1D-SE_LWD8.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-1/Categoria-1-parte3/1-STAR-6D-SE/Teste de Formacao a Cabo/1-STAR-6D-SE_XPT-GR.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-1011D-SE/Perfil Convencional/3-brsa-1011d-se_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-1030D-SE/Perfil Convencional/3-brsa-1030d-se_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-1058-SE/Perfil Convencional/3-brsa-1058-se_brsa_obmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-1093-SE/Perfil Convencional/3-brsa-1093-se_omri.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-778-SE/Perfil Convencional/3-brsa-778-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-786-SE/Perfil Convencional/3-brsa-786-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-794-SE/Perfil Convencional/3-brsa-794-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-809-SE/Perfil Convencional/3-brsa-809-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-889-SE/Perfil Convencional/3-brsa-889-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-897-SE/Perfil Convencional/3-brsa-897-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-900-SE/Perfil Convencional/3-brsa-900-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-907-SE/Perfil Convencional/3-brsa-907-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-910-SE/Perfil Convencional/3-brsa-910-se_brsa_xrmi-12489.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-912-SE/Perfil Convencional/3-brsa-912-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-972D-SE/Perfil Convencional/3-brsa-972d-se_omri.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-BRSA-998-SE/Perfil Convencional/3-brsa-998-se_brsa_omri.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-GALP-35-SE/Perfil Convencional/3-galp-35-se_cmi_ori-8060.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-GALP-43-SE/Perfil Convencional/3galp43se_fmi_114.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-3/Categoria-3-parte1/3-GALP-43-SE/Perfil Convencional/3galp43se_fmi_115.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-BRSA-467-SE/Perfil Convencional/4-brsa-467-se_brsa_fmi1.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-BRSA-556-SE/Perfil Convencional/4-brsa-556-se_brsa_tsc_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-33-SE/Perfil Convencional/4-GALP-33-SE_FMI-GR_PRINCIPAL.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-33-SE/Perfil Convencional/4-GALP-33-SE_FMI-GR_REPETIDA.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-34-SE/Perfil Convencional/4galp34se_fmi-gr.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-36-SE/Perfil Convencional/4-GALP-36-SE_CMI.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-44-SE/Perfil Convencional/4-galp-44-se_fmi-gr_1-principal.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-44-SE/Perfil Convencional/4-galp-44-se_fmi-gr_1-repetida.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-45-SE/Perfil Convencional/4galp45se_r1_fmi_020.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-45-SE/Perfil Convencional/4galp45se_r1_fmi_022.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-46-SE/Perfis Digitais/4-GALP-46-SE_xrmi_gr-1_dados-20528.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-4/4-GALP-46-SE/Perfis Digitais/4-GALP-46-SE_xrmi_gr-1_dados_PROCESSADOS-20527.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte1/7-AG-13D-SE/Perfis Digitais/7-ag-13d-se_brsa_obmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte1/7-AG-18D-SE/Perfis Digitais/7-ag-18d-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte1/7-AN-36-SE/Perfil Convencional/7-an-36-se_brsa_fmi.DLIS
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte1/7-ARI-8-SE/Perfil Convencional/7-ari-8-se_brsa_xrmi-8996.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte1/7-CL-44-SE/Perfis Digitais/7-cl-44-se_FMI_004.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte14/7-MG-33-SE/Perfis Digitais/7-mg-33-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte14/7-MG-37-SE/Perfis Digitais/7-mg-37-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte14/7-MG-46-SE/Perfis Digitais/7-mg-46-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte14/7-MG-65-SE/Perfil Convencional/7-mg-65-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte15/7-RB-2-SE/Perfil Convencional/7-RB-2-SE_FMIHD-GR.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte15/7-RB-2-SE/Perfil Convencional/7-RB-2-SE_FMIHD.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte19/7-RO-507-SE/Perfis Digitais/7-ro-507-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte19/7-RO-520-SE/Perfis Digitais/7-ro-520-se_brsa_fmi-dsi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte20/7-RO-626-SE/Perfis Digitais/7-ro-626-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte20/7-RO-650-SE/Perfis Digitais/7-ro-650-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte20/7-RO-703-SE/Perfil Convencional/7-ro-703-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte24/7-SZ-520-SE/Perfil Convencional/7-sz-520-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte24/7-SZ-525-SE/Perfil Convencional/7-sz-525-se_brsa_ubi_obmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte7/7-CP-1597-SE/Perfis Digitais/7-cp-1597-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte7/7-CP-1621-SE/Perfil Convencional/7-cp-1621-se_brsa_fmi-dsi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte9/7-CP-1893-SE/Perfil Convencional/7-cp-1893-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-7/Categoria-7-parte9/7-CP-1899-SE/Perfil Convencional/7-cp-1899-se_brsa_xrmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-8/Categoria-8-parte2/8-CP-1620D-SE/Perfis Digitais/8-cp-1620d-se_brsa_fmidsi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-8/Categoria-8-parte4/8-RO-523-SE/Perfil Convencional/8-ro-523-se_brsa_fmi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-9/Categoria-9-parte1/9-CL-45D-SE/Perfis Digitais/9-cl-45d-se_brsa_emi.dlis
+../5-Bacia_de_Sergipe/POCO/Categoria-9/Categoria-9-parte1/9-CL-48-SE/Perfis Digitais/9-cl-48-se_brsa_fmi-8546.dlis
