@@ -4,3 +4,7 @@ dlisio
 matplotlib
 ipykernel
 selenium
+tqdm
+ipywidgets
+scipy
+openpyxl
