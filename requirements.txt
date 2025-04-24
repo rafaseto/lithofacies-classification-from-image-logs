@@ -8,3 +8,4 @@ tqdm
 ipywidgets
 scipy
 openpyxl
+scikit-image
