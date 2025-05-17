@@ -1352,6 +1352,80 @@ def plot_cali_logs_5_runs(ax, df_spliced: pd.DataFrame,
     ax.legend()
 
 
+def plot_drho_logs_2_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
+    """
+    Plots DRHO logs from two DataFrames on a single plot.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the first set of well log data 
+            ('DRHO' and 'TDEP').
+        df2 (pd.DataFrame): DataFrame containing the second set of well log data.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    def plot_drho(ax, data, offset, color, label):
+        """
+        Helper function to plot DRHO logs with an optional offset.
+        """
+        x = data['DRHO'] + offset
+        y = data['TDEP']
+        if (color == 'orange'):
+            ax.scatter(x, y, label=label if offset == 0 else None, color=color, s=2, zorder=3)
+        else:
+            ax.scatter(x, y, label=label if offset == 0 else None, color=color, s=0.5, zorder=2)
+
+    # Initialize the figure and axes
+    #fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max() // 14))
+
+    # Plot the RHOB logs for each DataFrame
+    plot_drho(ax, df, 0, 'orange', 'DRHO original')
+    plot_drho(ax, df, 1, 'orange', None)
+    plot_drho(ax, df2, 0, 'lightgreen', 'DRHO interpolado')
+    plot_drho(ax, df2, 1, 'lightgreen', None)
+
+    interval = (df['DRHO'].max() - df['DRHO'].min()) / 20
+    # Set X-axis ticks and labels
+    sequence = np.arange(df['DRHO'].min(), df['DRHO'].max() + interval, interval)
+    ax.set_xticks(sequence)
+
+    # Define os índices dos rótulos (inclui o primeiro, último e mais 4 rótulos uniformemente distribuídos)
+    num_labels = 6  # Primeiro, último e mais 4 intermediários
+    label_indices = np.linspace(0, len(sequence) - 1, num_labels, dtype=int)
+
+    # Cria os rótulos com base nos índices selecionados
+    labels = [f"{sequence[i]:.2f}" if i in label_indices else '' for i in range(len(sequence))]
+    ax.set_xticklabels(labels)
+
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 5 == 0 else ''))
+
+    # Disable tick markers
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set gridline interval and axis limits
+    ax.yaxis.set_major_locator(plt.MultipleLocator(1))
+    ax.set_xlim(df['DRHO'].min(), df['DRHO'].max())
+    ax.set_ylim(df['TDEP'].min(), df['TDEP'].max())
+    ax.invert_yaxis()
+
+    # Add title and labels
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('DRHO', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend
+    ax.legend()
+
+
 def plot_drho_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
     """
     Plots DRHO logs from three DataFrames on a single plot.
@@ -1427,6 +1501,80 @@ def plot_drho_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataF
 
     # Display the legend
     ax.legend()
+
+
+def plot_rhob_logs_2_runs_v02(ax, df: pd.DataFrame, df2: pd.DataFrame, title: str) -> None:
+    """
+    Plots RHOB logs from two DataFrames on a single plot.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the first set of well log data 
+            ('DRHO' and 'TDEP').
+        df2 (pd.DataFrame): DataFrame containing the second set of well log data.
+        title (str): Title for the plot.
+
+    Returns:
+        None
+    """
+    def plot_rhob(ax, data, offset, color, label):
+        """
+        Helper function to plot RHOB logs with an optional offset.
+        """
+        x = data['RHOB'] + offset
+        y = data['TDEP']
+        if (color == 'blue'):
+            ax.scatter(x, y, label=label if offset == 0 else None, color=color, s=2, zorder=3)
+        else:
+            ax.scatter(x, y, label=label if offset == 0 else None, color=color, s=0.5, zorder=2)
+
+    # Initialize the figure and axes
+    #fig, ax = plt.subplots(1, 1, figsize=(8, df['TDEP'].max() // 14))
+
+    # Plot the RHOB logs for each DataFrame
+    plot_rhob(ax, df, 0, 'blue', 'RHOB original')
+    plot_rhob(ax, df, 1, 'blue', None)
+    plot_rhob(ax, df2, 0, 'salmon', 'RHOB interpolado')
+    plot_rhob(ax, df2, 1, 'salmon', None)
+
+    # Set X-axis ticks and labels
+    sequence = np.arange(2, 3.05, 0.05)
+    ax.set_xticks(sequence)
+
+    # Define os índices dos rótulos (inclui o primeiro, último e mais 4 rótulos uniformemente distribuídos)
+    num_labels = 6  # Primeiro, último e mais 4 intermediários
+    label_indices = np.linspace(0, len(sequence) - 1, num_labels, dtype=int)
+
+    # Cria os rótulos com base nos índices selecionados
+    labels = [f"{sequence[i]:.2f}" if i in label_indices else '' for i in range(len(sequence))]
+    ax.set_xticklabels(labels)
+
+    ax.xaxis.set_ticks_position('top')
+    ax.xaxis.set_label_position('top')
+
+    # Format the Y-axis tick labels
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: f'{x:.0f}' if x % 5 == 0 else ''))
+
+    # Disable tick markers
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=False, right=False)
+
+    # Add gridlines
+    ax.grid(True, axis='both', zorder=0)
+
+    # Set gridline interval and axis limits
+    ax.yaxis.set_major_locator(plt.MultipleLocator(1))
+    ax.set_xlim(2, 3)
+    ax.set_ylim(df['TDEP'].min(), df['TDEP'].max())
+    ax.invert_yaxis()
+
+    # Add title and labels
+    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel('RHOB', fontweight='bold')
+    ax.set_ylabel('TDEP', fontweight='bold')
+
+    # Display the legend
+    ax.legend()
+
 
 
 def plot_rhob_logs_3_runs(ax, df: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame, title: str) -> None:
@@ -1526,6 +1674,28 @@ def plot_rhob_drho(rhob_spliced, rhob_01, rhob_02, drho_spliced, drho_01, drho_0
     
     plot_rhob_logs_3_runs(axes[0], rhob_spliced, rhob_01, rhob_02, title_rhob)
     plot_drho_logs_3_runs(axes[1], drho_spliced, drho_01, drho_02, title_drho)
+
+
+def plot_rhob_drho_high_res(rhob_01, rhob_02, drho_01, drho_02, title_rhob, title_drho):
+    """
+    Combines two plots (RHOB logs and DRHO logs) side by side in a single figure.
+
+    Args:
+        rhob_01, rhob_02 (pd.DataFrame): DataFrames for the RHOB logs.
+        drho_01, drho_02 (pd.DataFrame): DataFrames for the DRHO logs.
+        title_rhob, title_drho (str): Titles for the two plots.
+
+    Returns:
+        None
+    """
+    rhob_bottom = max(rhob_01['TDEP'])
+    drho_bottom = max(drho_01['TDEP'])
+    well_bottom = max(rhob_bottom, drho_bottom)
+
+    fig, axes = plt.subplots(1, 2, figsize=(16, well_bottom), sharey=True)
+    
+    plot_rhob_logs_2_runs_v02(axes[0], rhob_01, rhob_02, title_rhob)
+    plot_drho_logs_2_runs(axes[1], drho_01, drho_02, title_drho)
 
 
 def plot_cali_rhob_drho(
